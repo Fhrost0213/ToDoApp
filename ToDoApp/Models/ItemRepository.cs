@@ -27,5 +27,16 @@ namespace ReactTest.Models
 
             _items.Add(newItem);
         }
+
+        public static void UpdateItem(ToDoItem item)
+        {
+            if (_items.Any(i => i.Id == item.Id))
+            {
+                var matchingItem = _items.First(i => i.Id == item.Id);
+
+                matchingItem.IsCompleted = item.IsCompleted;
+                matchingItem.Value = item.Value;
+            }    
+        }
     }
 }

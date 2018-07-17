@@ -10,9 +10,13 @@ export class ToDoApp extends React.Component {
 
         this.state = { items: [] }
 
-        this.getItems();
+        this.refreshItems();
     }
 
+    refreshItems = () => {
+        this.getItems();
+        this.mapItems(this.state.items);
+    }
 
     getItems = () => {
         fetch('api/SampleData/GetItems')
@@ -25,22 +29,18 @@ export class ToDoApp extends React.Component {
     mapItems = (props) => {
         if (props) {
             return (
-                props.map(function (d, idx) {
+                props.map(function(d, idx) {
                     console.log(d.value);
                     return (<ToDoItem id={idx} value={d.value} isCompleted={d.isCompleted} />)
-                }))
+                }));
         }
     }
 
-
     render() {
-
-        let testItems = [{ id: 100, value: "test", isCompleted: "true" },{ id: 99, value: "test", isCompleted: "true" }]
-
         return (
             <div>
                 <h3>To Do List</h3>
-                <AddItem />
+                <AddItem refreshItems={this.refreshItems} />
                 {this.mapItems(this.state.items)}
             </div>
         );

@@ -56,5 +56,13 @@ namespace ReactTest.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
+
+        [HttpPost("[action]")]
+        public HttpResponseMessage PutItem([FromBody]ToDoItem item)
+        {
+            ItemRepository.UpdateItem(item);
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
     }
 }

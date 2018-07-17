@@ -27,7 +27,9 @@ export default class AddItem extends React.Component {
                     id: 0, value: this.state.itemValue
                 })
             })
-            .then(response => console.log(response));
+            .then(() => this.props.refreshItems());
+
+        
     };
 
     render() {
