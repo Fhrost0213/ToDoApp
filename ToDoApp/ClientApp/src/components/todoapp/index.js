@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import AddItem from '../additem'
+import ToDoItem from '../todoitem'
 
 export class ToDoApp extends React.Component {
     displayName = ToDoApp.name;
@@ -7,21 +8,40 @@ export class ToDoApp extends React.Component {
     constructor(props) {
         super(props);
 
-        this.refreshItems();
+        this.state = { items: [] }
+
+        this.getItems();
     }
 
-    refreshItems = () => {
+
+    getItems = () => {
         fetch('api/SampleData/GetItems')
             .then(response => response.json())
-            .then(data => data.map(item => <div key={item.id}>{item.value}</div> ))   
+            .then(data => {
+                this.setState({ items: data });
+            });
     }
 
+    mapItems = (props) => {
+        if (props) {
+            return (
+                props.map(function (d, idx) {
+                    console.log(d.value);
+                    return (<ToDoItem id={idx} value={d.value} isCompleted={d.isCompleted} />)
+                }))
+        }
+    }
+
+
     render() {
+
+        let testItems = [{ id: 100, value: "test", isCompleted: "true" },{ id: 99, value: "test", isCompleted: "true" }]
+
         return (
             <div>
                 <h3>To Do List</h3>
                 <AddItem />
-                <div>{this.refreshItems()}</div>
+                {this.mapItems(this.state.items)}
             </div>
         );
     }

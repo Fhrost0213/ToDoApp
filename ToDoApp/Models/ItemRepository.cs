@@ -23,7 +23,7 @@ namespace ReactTest.Models
                 newId = _items.Max(x => x.Id) + 1;
             }
 
-            var newItem = new ToDoItem(newId, item.Value);
+            var newItem = new ToDoItem(newId, item.Value, false);
 
             _items.Add(newItem);
         }
