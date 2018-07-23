@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import './Styles.css';
 
 export default class AddItem extends React.Component {
 
@@ -16,7 +17,7 @@ export default class AddItem extends React.Component {
 
     handleSubmit = () => {
 
-        fetch('api/SampleData/PostItem',
+        fetch('api/Items',
             {
                 method: 'POST',
                 headers: {
@@ -27,9 +28,7 @@ export default class AddItem extends React.Component {
                     id: 0, value: this.state.itemValue
                 })
             })
-            .then(() => this.props.refreshItems());
-
-        
+        .then(() => this.props.refreshItems());    
     };
 
     render() {

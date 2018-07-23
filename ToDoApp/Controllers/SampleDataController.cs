@@ -42,27 +42,5 @@ namespace ReactTest.Controllers
                 }
             }
         }
-
-        [HttpGet("[action]")]
-        public IEnumerable<ToDoItem> GetItems()
-        {
-            return ItemRepository.GetItems();
-        }
-
-        [HttpPost("[action]")]
-        public HttpResponseMessage PostItem([FromBody]ToDoItem item)
-        {
-            ItemRepository.AddItem(item);
-
-            return new HttpResponseMessage(HttpStatusCode.OK);
-        }
-
-        [HttpPost("[action]")]
-        public HttpResponseMessage PutItem([FromBody]ToDoItem item)
-        {
-            ItemRepository.UpdateItem(item);
-
-            return new HttpResponseMessage(HttpStatusCode.OK);
-        }
     }
 }

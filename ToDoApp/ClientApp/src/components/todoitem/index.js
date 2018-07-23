@@ -18,7 +18,7 @@ export default class ToDoItem extends React.Component {
     }
 
     updateItem = () => {
-        fetch('api/SampleData/PutItem',
+        fetch('api/Items',
                 {
                     method: 'PUT',
                     headers: {
@@ -35,9 +35,9 @@ export default class ToDoItem extends React.Component {
     render() {
 
         return (
-            <li class="list-group-item d-flex justify-content-between align-items-center" id={this.state.id}>
+            <li className="list-group-item d-flex justify-content-between align-items-center" id={this.state.id}>
                 {this.state.value}
-                <span class="badge badge-primary badge-pill">
+                <span className="badge badge-primary badge-pill">
                     <input type="checkbox" checked={this.state.isCompleted} onClick={this.onCheckboxClick} />
                 </span>
             </li>
